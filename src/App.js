@@ -6,9 +6,6 @@ function App() {
   return (
     <>
       <Main />
-      <Gold />
-      <Character />
-      zloazloazloazloa
     </>
   );
 }
