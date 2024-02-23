@@ -1,9 +1,12 @@
-
-import Main from './pages/Main/Main';
+import Gold from "./pages/Gold/Gold";
+import Main from "./pages/Main/Main";
 
 function App() {
   return (
-    <Main/>
+    <>
+      <Main />
+      <Gold />
+    </>
   );
 }
 
