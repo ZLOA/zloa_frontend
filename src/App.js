@@ -8,6 +8,7 @@ function App() {
       <Main />
       <Gold />
       <Character />
+      zloazloazloazloa
     </>
   );
 }
