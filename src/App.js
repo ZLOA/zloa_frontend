@@ -1,10 +1,9 @@
-import Gold from "./pages/Gold/Gold";
-import Main from "./pages/Main/Main";
+import RootRouter from "./router/RootRouter";
 
 function App() {
   return (
     <>
-      <Main />
+      <RootRouter/>
     </>
   );
 }
