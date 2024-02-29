@@ -1,6 +1,6 @@
 import Character from "./pages/Character/Character";
-import CompResult from "./pages/Character/CompResult";
-import Comparison from "./pages/Character/Comparison";
+import CompResult from "./pages/Comparison/CompResult";
+import Comparison from "./pages/Comparison/Comparison";
 import Gold from "./pages/Gold/Gold";
 import Main from "./pages/Main/Main";
 

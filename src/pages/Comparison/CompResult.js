@@ -2,50 +2,21 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import CharacteristicTab from "./CharacteristicTab";
+import EquipmentTab from "./EquipmentTab";
+import CardTab from "./CardTab";
+import SkillTab from "./SkillTab";
+import JewelryTab from "./JewelryTab";
+import AvatarTab from "./AvatarTab";
+
 const tabs = ["특성/각인", "장비", "카드", "아바타", "보석", "스킬"];
 const tabData = {
-  "특성/각인": (
-    <div>
-      <h2>특성/각인 탭</h2>
-      <p>내용이 들어갈 자리입니다.</p>
-      <p>컴포넌트도 넣을 수 있습니다 ㅎㅎㅎ</p>
-    </div>
-  ),
-  장비: (
-    <div>
-      <h2>장비 탭</h2>
-      <p>내용이 들어갈 자리입니다.</p>
-      <p>컴포넌트도 넣을 수 있습니다 ㅎㅎㅎ</p>
-    </div>
-  ),
-  카드: (
-    <div>
-      <h2>카드 탭</h2>
-      <p>내용이 들어갈 자리입니다.</p>
-      <p>컴포넌트도 넣을 수 있습니다 ㅎㅎㅎ</p>
-    </div>
-  ),
-  아바타: (
-    <div>
-      <h2>아바타 탭</h2>
-      <p>내용이 들어갈 자리입니다.</p>
-      <p>컴포넌트도 넣을 수 있습니다 ㅎㅎㅎ</p>
-    </div>
-  ),
-  보석: (
-    <div>
-      <h2>보석 탭</h2>
-      <p>내용이 들어갈 자리입니다.</p>
-      <p>컴포넌트도 넣을 수 있습니다 ㅎㅎㅎ</p>
-    </div>
-  ),
-  스킬: (
-    <div>
-      <h2>스킬 탭</h2>
-      <p>내용이 들어갈 자리입니다.</p>
-      <p>컴포넌트도 넣을 수 있습니다 ㅎㅎㅎ</p>
-    </div>
-  ),
+  "특성/각인": <CharacteristicTab />,
+  "장비": <EquipmentTab />,
+  "카드": <CardTab />,
+  "아바타": <AvatarTab />,
+  "보석": <JewelryTab />,
+  "스킬": <SkillTab />,
 };
 
 export default function CompResult() {
@@ -100,6 +71,8 @@ export default function CompResult() {
     </Container>
   );
 }
+
+console.log(tabData["카드"]);
 
 const Container = styled.div`
   display: flex;
