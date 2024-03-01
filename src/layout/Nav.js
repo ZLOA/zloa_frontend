@@ -17,7 +17,7 @@ export default function Nav() {
     <NavContainer>
       <NavWrap>
         <NavLeft>
-          <div style={{ marginLeft: "25px" }} onClick={goToMain}>ZLOA</div>
+          <div style={{ marginLeft: "25px" , cursor: "pointer"}} onClick={goToMain}>ZLOA</div>
         </NavLeft>
         <NavCenter>
           <NavItemContainer>
@@ -92,7 +92,7 @@ const NavItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  cursor: pointer;
   &:hover {
     background-color: #524f52;
   }

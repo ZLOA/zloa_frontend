@@ -161,7 +161,7 @@ const CharAsideImg = styled.div`
 `;
 
 const CharContent = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   color: black;
   font-size: 100px;
 `;
