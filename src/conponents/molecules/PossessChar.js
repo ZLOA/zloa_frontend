@@ -22,39 +22,55 @@ const ClassImgData = [
     icon: "sorceress",
   },
 ];
-export default function PossessChar({ level, className, name, itemLevel }) {
-  <Container>
-    <div style={{ backgroundColor: "orange" }} />
-    <CharImgWrapper>
-      <CharImg
-        url={`https://cdn.korlark.com/lostark/avatars/${
-          ClassImgData.find((item) => item.name === className).icon
-        }.png`}
-      />
-    </CharImgWrapper>
-    <div>
-      <div>
-        Lv.{level} {className}
-      </div>
-      <div>{name}</div>
-      <div>{itemLevel}</div>
-    </div>
-  </Container>;
+export default function PossessChar({
+  level,
+  className,
+  name,
+  itemLevel,
+  guild,
+}) {
+  return (
+    <Container>
+      <LevelColor/>
+      <CharImgWrapper>
+        <CharImg
+          url={`https://cdn.korlark.com/lostark/avatars/${
+            ClassImgData.find((item) => item.name === className).icon
+          }.png`}
+        />
+      </CharImgWrapper>
+      <CharTextWrapper>
+        <div>
+          Lv.{level} {className}
+        </div>
+        <div>{name}</div>
+        <BetweenWrapper>
+          <div>{itemLevel}</div>
+          <div>{guild}</div>
+        </BetweenWrapper>
+      </CharTextWrapper>
+    </Container>
+  );
 }
 
 const Container = styled.div`
   border: 1px solid #e5e7eb;
   border-radius: 5px;
-  padding: 5px 5px 5px 0;
 
   display: grid;
-  grid-template-columns: 1fr 10fr 50fr;
+  grid-template-columns: 1fr 12fr 48fr;
 `;
 
+const LevelColor = styled.div`
+    background-color: orange;
+    border-radius: 5px 0 0 5px;
+`
 const CharImgWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
+  margin-left: 10px;
 `;
 
 const CharImg = styled.div`
@@ -66,4 +82,17 @@ const CharImg = styled.div`
   background-repeat: no-repeat;
   background-image: url(${(props) => props.url});
   background-size: cover;
+`;
+
+const CharTextWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding: 10px;
+  gap: 10px;
+`;
+
+const BetweenWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
