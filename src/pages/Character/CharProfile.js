@@ -123,6 +123,19 @@ const AccessoryData = [
   },
 ];
 
+const EquipEngravingData = [
+  {
+    a: "예리한 둔기",
+    b: "https://cdn-lostark.game.onstove.com/efui_iconatlas/achieve/achieve_03_40.png",
+    c: 12,
+  },
+  {
+    a: "바리케이드",
+    b: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_170.png",
+    c: 12,
+  },
+];
+
 const GemData = [
   {
     a: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_55.png",
@@ -135,6 +148,62 @@ const GemData = [
   {
     a: "https://cdn-lostark.game.onstove.com/efui_iconatlas/use/use_9_55.png",
     b: 10,
+  },
+];
+
+const StatData = [61201, 58830, 2371, 194292];
+
+const StatBattleData = [
+  {
+    a: "치명",
+    b: 637,
+  },
+  {
+    a: "특화",
+    b: 1821,
+  },
+  {
+    a: "신속",
+    b: 61,
+  },
+  {
+    a: "제압",
+    b: 64,
+  },
+  {
+    a: "인내",
+    b: 66,
+  },
+  {
+    a: "숙련",
+    b: 60,
+  },
+];
+
+const EngravingData = [
+  {
+    Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_71.png",
+    Name: "원한 Lv. 3",
+  },
+  {
+    Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/achieve/achieve_03_40.png",
+    Name: "예리한 둔기 Lv. 3",
+  },
+  {
+    Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_170.png",
+    Name: "바리케이드 Lv. 3",
+  },
+  {
+    Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_210.png",
+    Name: "돌격대장 Lv. 3",
+  },
+  {
+    Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_235.png",
+    Name: "아드레날린 Lv. 3",
+  },
+  {
+    Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_217.png",
+    Name: "진화의 유산 Lv. 1",
   },
 ];
 
@@ -197,6 +266,19 @@ export default function CharProfile() {
               </EquipItem>
             );
           })}
+          <EquipEngravingWrapper>
+            {EquipEngravingData.map((d, i) => {
+              return (
+                <EquipEngravingItemWrapper key={i}>
+                  <EquipEngravingItemImg url={d.b} />
+                  <div>
+                    <div>{d.a}</div>
+                    <div>활성포인트 +{d.c}</div>
+                  </div>
+                </EquipEngravingItemWrapper>
+              );
+            })}
+          </EquipEngravingWrapper>
         </EquipWrapper>
         <EquipWrapper>
           {AccessoryData.map((d, i) => {
@@ -231,6 +313,74 @@ export default function CharProfile() {
           );
         })}
       </GemContainer>
+
+      <StatContainer>
+        <StatInnerContainer>
+          <BetweenWrapper>
+            <EquipText3Right>기본 특성</EquipText3Right>
+          </BetweenWrapper>
+          <StatInnerWrapper>
+          <BetweenWrapper>
+            <StatText gray={1}>공격력</StatText>
+            <StatText bold={1}>{StatData[0]}</StatText>
+          </BetweenWrapper>
+          <BetweenWrapper>
+            <StatText gray={1} size={1}>
+              {" "}
+              ㄴ 기본
+            </StatText>
+            <StatText bold={1} size={1}>
+              {StatData[1]}
+            </StatText>
+          </BetweenWrapper>
+          <BetweenWrapper>
+            <StatText gray={1} size={1}>
+              {" "}
+              ㄴ 효과
+            </StatText>
+            <StatText bold={1} size={1}>
+              {StatData[2]}
+            </StatText>
+          </BetweenWrapper>
+          <BetweenWrapper>
+            <StatText gray={1}>최대 생명력</StatText>
+            <StatText bold={1}>{StatData[3]}</StatText>
+          </BetweenWrapper>
+          </StatInnerWrapper>
+          <div style={{ marginTop: "20px" }} />
+
+          <BetweenWrapper>
+            <EquipText3Right>전투 특성</EquipText3Right>
+          </BetweenWrapper>
+          <StatBattleWrapper>
+            {StatBattleData.map((d, i) => {
+              return (
+                <BetweenWrapper>
+                  <StatText gray={1}>{d.a}</StatText>
+                  <StatText bold={1}>{d.b}</StatText>
+                </BetweenWrapper>
+              );
+            })}
+          </StatBattleWrapper>
+        </StatInnerContainer>
+
+        <StatInnerContainer>
+          <BetweenWrapper>
+            <EquipText3Right>각인</EquipText3Right>
+            <div>333331</div>
+          </BetweenWrapper>
+          
+          {EngravingData.map((d, i)=>{
+            return(
+              <StatEngravingWrapper key={i}>
+                <StatEngravingImg url={d.Icon}/>
+                <div>{d.Name}</div>
+              </StatEngravingWrapper>
+            )
+          })}
+          
+        </StatInnerContainer>
+      </StatContainer>
 
       <CardContainer>
         {CardData.map((d, i) => {
@@ -340,6 +490,32 @@ const EquipText3Right = styled.div`
   }}
 `;
 
+const EquipEngravingWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  font-size: 13px;
+  padding: 5px 5px;
+`;
+
+const EquipEngravingItemWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+`;
+
+const EquipEngravingItemImg = styled.div`
+  border-radius: 100%;
+
+  width: 30%;
+  padding-top: 30%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url(${(props) => props.url});
+  background-size: cover;
+`;
+
 // const AccessoryItem = styled.div`
 //   border: 1px solid black;
 // `;
@@ -382,6 +558,94 @@ const GemLevel = styled.div`
   font-size: 15px;
 `;
 
+const StatContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+const StatInnerContainer = styled.div`
+display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+`;
+
+const StatInnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-left: 10px;
+`
+
+const BetweenWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StatText = styled.div`
+  ${(props) => {
+    if (props.gray) {
+      return css`
+        color: gray;
+      `;
+    }
+  }}
+
+  ${(props) => {
+    if (props.size) {
+      return css`
+        font-size: 14px;
+      `;
+    }
+  }}
+
+${(props) => {
+    if (props.bold) {
+      return css`
+        font-weight: bold;
+      `;
+    }
+  }}
+`;
+
+const StatBattleWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 20px;
+  grid-column-gap: 50px;
+  margin-left: 10px;
+`;
+
+const StatEngravingWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  align-items: center;
+  margin-left: 10px;
+`;
+
+const StatEngravingImg = styled.div`
+border-radius: 100%;
+
+width: 8%;
+padding-top: 8%;
+background-position: 50% 50%;
+background-repeat: no-repeat;
+background-image: url(${(props) => props.url});
+background-size: cover;
+`
+
 const CardContainer = styled.div`
   margin-top: 20px;
   margin-bottom: 100px;
@@ -398,7 +662,6 @@ const CardWrapper = styled.div`
 `;
 
 const CardImg = styled.div`
-  border: 1px solid white;
   border-radius: 10px;
 
   width: 100%;
@@ -414,7 +677,7 @@ const CardAwakeWrapper = styled.div`
   width: 92%;
   padding: 5%;
   bottom: 0;
-  left: 1%;
+  left: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 `;
