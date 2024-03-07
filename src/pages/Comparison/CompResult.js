@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import CharacteristicTab from "./CharacteristicTab";
 import EquipmentTab from "./EquipmentTab";
 import CardTab from "./CardTab";
-import SkillTab from "./SkillTab";
-import JewelryTab from "./JewelryTab";
+import SkillJewelryTab from "./SkillJewelryTab";
 import AvatarTab from "./AvatarTab";
 
-const tabs = ["특성/각인", "장비", "카드", "아바타", "보석", "스킬"];
+const tabs = ["특성/각인", "장비", "카드", "아바타", "보석/스킬"];
 const tabData = {
   "특성/각인": <CharacteristicTab />,
   "장비": <EquipmentTab />,
   "카드": <CardTab />,
   "아바타": <AvatarTab />,
-  "보석": <JewelryTab />,
-  "스킬": <SkillTab />,
+  "보석/스킬": <SkillJewelryTab />,
 };
 
 export default function CompResult() {
@@ -42,14 +40,47 @@ export default function CompResult() {
 
         <CharInfo>
           <FlexWrap>
-            <CharImg
-              src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/6ea307f6d8414e7c9bb89c2dbe124578.png"
-              alt="스카우터"
-            />
-            <CharImg
-              src="https://i.namu.wiki/i/nfCV0r1peFJ3uonmp47aNSBIHm2LHiqrFdl48qRo1Ue_c4Yip_qgccPO0uuHXqdg6rNLn5yWPX3R4qshcMRgFmPiXvJZsEFXk7ZMMu3CEVYGNyqlbNiyOilBVX0G9SU3WDSvCG_bF8MZiaoUbp7I-g.webp"
-              alt="소서리스"
-            />
+              <CharImg
+                src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/6ea307f6d8414e7c9bb89c2dbe124578.png"
+                alt="스카우터"
+              />
+              <CharImg
+                src="https://i.namu.wiki/i/nfCV0r1peFJ3uonmp47aNSBIHm2LHiqrFdl48qRo1Ue_c4Yip_qgccPO0uuHXqdg6rNLn5yWPX3R4qshcMRgFmPiXvJZsEFXk7ZMMu3CEVYGNyqlbNiyOilBVX0G9SU3WDSvCG_bF8MZiaoUbp7I-g.webp"
+                alt="소서리스"
+              />
+
+            <CharCombat>
+                <div>
+                    1500000
+                </div>
+                <div>
+                  실 전투력
+                </div>
+                <div>
+                    1489000
+                </div>
+            </CharCombat>
+
+            <CharAbilitis>
+              <CharAbility end>
+                <div>@아브렐슈드</div>
+                <CharName>끄구마</CharName>
+                <div>
+                  <span>스카우터</span>
+                  <span>*</span>
+                  <span>1,630.83</span>
+                </div>
+              </CharAbility>
+              <CharAbility>
+                <div>@아브렐슈드</div>
+                <CharName>끄구마</CharName>
+                <div>
+                  <span>스카우터</span>
+                  <span>*</span>
+                  <span>1,630.83</span>
+                </div>
+              </CharAbility>
+            </CharAbilitis>
           </FlexWrap>
 
           <div>
@@ -154,4 +185,47 @@ const CharInfo = styled.div`
 
 const FlexWrap = styled.div`
     display: flex;
+    position: relative;
+`;
+
+const CharCombat = styled.div`
+  position:absolute;
+  top:10;
+  right:32%;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+`;
+
+const CharAbilitis = styled.div`
+
+  position:absolute;
+  bottom:0;
+  right:33%;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+`;
+
+const CharAbility = styled.div`
+    ${(props) => {
+    if(props.end) {
+      return css`
+        text-align: end;
+      `;
+    }
+  }}
+`;
+
+const CharName = styled.div`
+  font-size: 25px;
 `;
