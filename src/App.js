@@ -1,11 +1,11 @@
-import Character from "./pages/Character/Character";
-import Gold from "./pages/Gold/Gold";
-import Main from "./pages/Main/Main";
+import { Reset } from 'styled-reset';
+import RootRouter from "./router/RootRouter";
 
 function App() {
   return (
     <>
-      <Main />
+      <Reset/>
+      <RootRouter/>
     </>
   );
 }
