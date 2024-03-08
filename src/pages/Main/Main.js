@@ -1,28 +1,32 @@
 import styled from "styled-components";
+import Layout from "../../layout/Layout";
 
 export default function Main() {
   return (
-    <Container>
-      <BigLogo>ZLOA</BigLogo>
-      <SearchBarContainer>
-        <div style={{fontSize:'30px', textAlign:'center'}}>🔍</div>
-        <SearchBar type="text" placeholder="캐릭터명을 입력하세요"/>
-        <div/>
-      </SearchBarContainer>
-    </Container>
-  )
+    <Layout>
+      <Container>
+        <BigLogo>ZLOA</BigLogo>
+        <SearchBarContainer>
+          <div style={{ fontSize: "30px", textAlign: "center" }}>🔍</div>
+          <SearchBar type="text" placeholder="캐릭터명을 입력하세요" />
+          <div />
+        </SearchBarContainer>
+      </Container>
+    </Layout>
+  );
 }
 
 const Container = styled.div`
   width: 98vw;
+  height: 2000px;
   margin: auto;
   text-align: center;
-`
+`;
 const BigLogo = styled.div`
   margin-top: 20vh;
   font-size: 150px;
   font-weight: bold;
-`
+`;
 
 const SearchBarContainer = styled.div`
   margin: auto;
@@ -36,14 +40,14 @@ const SearchBarContainer = styled.div`
   grid-template-columns: 1fr 8fr 1fr;
   /* justify-content: center; */
   align-items: center;
-`
+`;
 
 const SearchBar = styled.input`
   height: 5vh;
   font-size: 25px;
-  border:none;
+  border: none;
   transition: border 0.3s;
   &:focus {
     outline: none;
   }
-`
+`;
