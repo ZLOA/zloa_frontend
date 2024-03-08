@@ -137,7 +137,7 @@ export default function GoldCharacteristicTab() {
       </LeftContainer>
 
       <MiddleContainer>
-        <LabelDiv style={{ margin: "10px" }}>목표 각인</LabelDiv>
+        <LabelDiv style={{ margin: "10px" }}>추천 목표 각인</LabelDiv>
         {EngravingData.map((d, i) => {
           return (
             <MiddleEngravingWrapper key={i}>
@@ -147,7 +147,10 @@ export default function GoldCharacteristicTab() {
           );
         })}
         <SearchBtn>검색</SearchBtn>
-        <SearchText>추천 각인에 해당하는 장신구를 검색하고<br/> 싶으시면 눌러주세요.</SearchText>
+        <SearchText>
+          추천 각인에 해당하는 장신구를 검색하고
+          <br /> 싶으시면 눌러주세요.
+        </SearchText>
       </MiddleContainer>
       <></>
     </Container>
@@ -256,12 +259,12 @@ const SearchBtn = styled.div`
   border-radius: 5px;
   border: 2px solid #524f52;
   cursor: pointer;
-  
-  &:hover{
+
+  &:hover {
     background-color: #403d37;
   }
-`
+`;
 const SearchText = styled.div`
   line-height: 1.5;
   margin-bottom: 20px;
-`
+`;

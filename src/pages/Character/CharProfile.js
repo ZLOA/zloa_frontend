@@ -320,32 +320,32 @@ export default function CharProfile() {
             <EquipText3Right>기본 특성</EquipText3Right>
           </BetweenWrapper>
           <StatInnerWrapper>
-          <BetweenWrapper>
-            <StatText gray={1}>공격력</StatText>
-            <StatText bold={1}>{StatData[0]}</StatText>
-          </BetweenWrapper>
-          <BetweenWrapper>
-            <StatText gray={1} size={1}>
-              {" "}
-              ㄴ 기본
-            </StatText>
-            <StatText bold={1} size={1}>
-              {StatData[1]}
-            </StatText>
-          </BetweenWrapper>
-          <BetweenWrapper>
-            <StatText gray={1} size={1}>
-              {" "}
-              ㄴ 효과
-            </StatText>
-            <StatText bold={1} size={1}>
-              {StatData[2]}
-            </StatText>
-          </BetweenWrapper>
-          <BetweenWrapper>
-            <StatText gray={1}>최대 생명력</StatText>
-            <StatText bold={1}>{StatData[3]}</StatText>
-          </BetweenWrapper>
+            <BetweenWrapper>
+              <StatText gray={1}>공격력</StatText>
+              <StatText bold={1}>{StatData[0]}</StatText>
+            </BetweenWrapper>
+            <BetweenWrapper>
+              <StatText gray={1} size={1}>
+                {" "}
+                ㄴ 기본
+              </StatText>
+              <StatText bold={1} size={1}>
+                {StatData[1]}
+              </StatText>
+            </BetweenWrapper>
+            <BetweenWrapper>
+              <StatText gray={1} size={1}>
+                {" "}
+                ㄴ 효과
+              </StatText>
+              <StatText bold={1} size={1}>
+                {StatData[2]}
+              </StatText>
+            </BetweenWrapper>
+            <BetweenWrapper>
+              <StatText gray={1}>최대 생명력</StatText>
+              <StatText bold={1}>{StatData[3]}</StatText>
+            </BetweenWrapper>
           </StatInnerWrapper>
           <div style={{ marginTop: "20px" }} />
 
@@ -369,16 +369,15 @@ export default function CharProfile() {
             <EquipText3Right>각인</EquipText3Right>
             <div>333331</div>
           </BetweenWrapper>
-          
-          {EngravingData.map((d, i)=>{
-            return(
+
+          {EngravingData.map((d, i) => {
+            return (
               <StatEngravingWrapper key={i}>
-                <StatEngravingImg url={d.Icon}/>
+                <StatEngravingImg url={d.Icon} />
                 <div>{d.Name}</div>
               </StatEngravingWrapper>
-            )
+            );
           })}
-          
         </StatInnerContainer>
       </StatContainer>
 
@@ -566,7 +565,7 @@ const StatContainer = styled.div`
 `;
 
 const StatInnerContainer = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   gap: 10px;
 
@@ -582,7 +581,7 @@ const StatInnerWrapper = styled.div`
   gap: 10px;
 
   margin-left: 10px;
-`
+`;
 
 const BetweenWrapper = styled.div`
   display: flex;
@@ -636,15 +635,15 @@ const StatEngravingWrapper = styled.div`
 `;
 
 const StatEngravingImg = styled.div`
-border-radius: 100%;
+  border-radius: 100%;
 
-width: 8%;
-padding-top: 8%;
-background-position: 50% 50%;
-background-repeat: no-repeat;
-background-image: url(${(props) => props.url});
-background-size: cover;
-`
+  width: 8%;
+  padding-top: 8%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url(${(props) => props.url});
+  background-size: cover;
+`;
 
 const CardContainer = styled.div`
   margin-top: 20px;

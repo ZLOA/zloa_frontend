@@ -31,7 +31,7 @@ export default function PossessChar({
 }) {
   return (
     <Container>
-      <LevelColor/>
+      <LevelColor />
       <CharImgWrapper>
         <CharImg
           url={`https://cdn.korlark.com/lostark/avatars/${
@@ -62,9 +62,9 @@ const Container = styled.div`
 `;
 
 const LevelColor = styled.div`
-    background-color: orange;
-    border-radius: 5px 0 0 5px;
-`
+  background-color: orange;
+  border-radius: 5px 0 0 5px;
+`;
 const CharImgWrapper = styled.div`
   display: flex;
   align-items: center;

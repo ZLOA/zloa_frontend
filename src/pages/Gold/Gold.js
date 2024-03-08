@@ -10,34 +10,33 @@ import GoldEtcTab from "./GoldEtcTab";
 
 const GoldData = [
   {
-    a: '장비 강화',
-    b: '1800000G',
-    c: '460000⬆'
+    a: "장비 강화",
+    b: "1800000G",
+    c: "460000⬆",
   },
   {
-    a: '카드',
-    b: '3000000G',
-    c: '2600400⬆'
+    a: "카드",
+    b: "3000000G",
+    c: "2600400⬆",
   },
   {
-    a: '보석',
-    b: '4000000G',
-    c: '560000⬆'
+    a: "보석",
+    b: "4000000G",
+    c: "560000⬆",
   },
-]
+];
 
 const tabs = ["특성/각인", "장비", "카드", "아바타", "보석", "팔찌/엘릭서"];
 const tabData = {
   "특성/각인": <GoldCharacteristicTab />,
-  "장비": <GoldEquipmentTab />,
-  "카드": <GoldCardTab />,
-  "아바타": <GoldAvatarTab />,
-  "보석": <GoldJewelTab />,
+  장비: <GoldEquipmentTab />,
+  카드: <GoldCardTab />,
+  아바타: <GoldAvatarTab />,
+  보석: <GoldJewelTab />,
   "팔찌/엘릭서": <GoldEtcTab />,
 };
 
 export default function Gold() {
-
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const handleTabClick = (tab) => {
@@ -79,35 +78,33 @@ export default function Gold() {
             <BorderBox bottom={1} right={1}>
               예상 골드 소모량
             </BorderBox>
-            <BorderBox bottom={1}>
-              예상 전투력 상승치
-            </BorderBox>
+            <BorderBox bottom={1}>예상 전투력 상승치</BorderBox>
           </GridWrapper>
-          {GoldData.map((d, i)=>{
-            return(
+          {GoldData.map((d, i) => {
+            return (
               <GridWrapper key={i}>
                 <BorderBox right={1}>{d.a}</BorderBox>
                 <BorderBox right={1}>{d.b}</BorderBox>
                 <BorderBox>{d.c}</BorderBox>
               </GridWrapper>
-            )
+            );
           })}
         </div>
 
         <div>
-            <FlexWrap>
-              {tabs.map((tab) => (
-                <Tab
-                  key={tab}
-                  onClick={() => handleTabClick(tab)}
-                  isActive={tab === activeTab}
-                >
-                  {tab}
-                </Tab>
-              ))}
-            </FlexWrap>
-            <ResultArea>{tabData[activeTab]}</ResultArea>
-          </div>
+          <FlexWrap>
+            {tabs.map((tab) => (
+              <Tab
+                key={tab}
+                onClick={() => handleTabClick(tab)}
+                isActive={tab === activeTab}
+              >
+                {tab}
+              </Tab>
+            ))}
+          </FlexWrap>
+          <ResultArea>{tabData[activeTab]}</ResultArea>
+        </div>
       </GoldContainer>
     </>
   );
@@ -201,8 +198,8 @@ const BorderBox = styled.div`
 `;
 
 const FlexWrap = styled.div`
-    display: flex;
-    margin-top: 30px;
+  display: flex;
+  margin-top: 30px;
 `;
 
 const Tab = styled.div`

@@ -7,35 +7,35 @@ const ExpeditionData = [
     className: "창술사",
     name: "졸업싫어요",
     itemLevel: 1630.33,
-    guild: "6덕"
+    guild: "6덕",
   },
   {
     level: 60,
     className: "블레이드",
     name: "집에가고파",
     itemLevel: 1600.33,
-    guild: "6덕"
+    guild: "6덕",
   },
   {
     level: 60,
     className: "바드",
     name: "졸업싫어요",
     itemLevel: 1630.33,
-    guild: "6덕"
+    guild: "6덕",
   },
   {
     level: 60,
     className: "소울이터",
     name: "졸업싫어요",
     itemLevel: 1630.33,
-    guild: "6덕"
+    guild: "6덕",
   },
   {
     level: 60,
     className: "소서리스",
     name: "졸업싫어요",
     itemLevel: 1630.33,
-    guild: "6덕"
+    guild: "6덕",
   },
 ];
 
