@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import CharacteristicTab from "./CharacteristicTab";
@@ -7,13 +7,14 @@ import EquipmentTab from "./EquipmentTab";
 import CardTab from "./CardTab";
 import SkillJewelryTab from "./SkillJewelryTab";
 import AvatarTab from "./AvatarTab";
+import Nav from "../../layout/Nav";
 
 const tabs = ["특성/각인", "장비", "카드", "아바타", "보석/스킬"];
 const tabData = {
   "특성/각인": <CharacteristicTab />,
-  "장비": <EquipmentTab />,
-  "카드": <CardTab />,
-  "아바타": <AvatarTab />,
+  장비: <EquipmentTab />,
+  카드: <CardTab />,
+  아바타: <AvatarTab />,
   "보석/스킬": <SkillJewelryTab />,
 };
 
@@ -26,20 +27,26 @@ export default function CompResult() {
     setActiveTab(tab);
   };
 
-  return (
-    <Container>
-      <div>
-        <div>
-          <SearchContainer>
-            <SearchBar value={charName1} />
-            <Separator>VS</Separator>
-            <SearchBar value={charName2} />
-            <SearchButton>검색</SearchButton>
-          </SearchContainer>
-        </div>
+  const location = useLocation();
+  const receivedInPutData = location.state;
+  console.log(receivedInPutData);
 
-        <CharInfo>
-          <FlexWrap>
+  return (
+    <>
+      <Nav />
+      <Container>
+        <div>
+          <div>
+            <SearchContainer>
+              <SearchBar value={charName1} />
+              <Separator>VS</Separator>
+              <SearchBar value={charName2} />
+              <SearchButton>검색</SearchButton>
+            </SearchContainer>
+          </div>
+
+          <CharInfo>
+            <FlexWrap>
               <CharImg
                 src="https://cdn-lostark.game.onstove.com/uploadfiles/notice/6ea307f6d8414e7c9bb89c2dbe124578.png"
                 alt="스카우터"
@@ -49,57 +56,52 @@ export default function CompResult() {
                 alt="소서리스"
               />
 
-            <CharCombat>
-                <div>
-                    1500000
-                </div>
-                <div>
-                  실 전투력
-                </div>
-                <div>
-                    1489000
-                </div>
-            </CharCombat>
+              <CharCombat>
+                <div>1500000</div>
+                <div>실 전투력</div>
+                <div>1489000</div>
+              </CharCombat>
 
-            <CharAbilitis>
-              <CharAbility end>
-                <div>@아브렐슈드</div>
-                <CharName>끄구마</CharName>
-                <div>
-                  <span>스카우터</span>
-                  <span>*</span>
-                  <span>1,630.83</span>
-                </div>
-              </CharAbility>
-              <CharAbility>
-                <div>@아브렐슈드</div>
-                <CharName>끄구마</CharName>
-                <div>
-                  <span>스카우터</span>
-                  <span>*</span>
-                  <span>1,630.83</span>
-                </div>
-              </CharAbility>
-            </CharAbilitis>
-          </FlexWrap>
-
-          <div>
-            <FlexWrap>
-              {tabs.map((tab) => (
-                <Tab
-                  key={tab}
-                  onClick={() => handleTabClick(tab)}
-                  isActive={tab === activeTab}
-                >
-                  {tab}
-                </Tab>
-              ))}
+              <CharAbilitis>
+                <CharAbility end>
+                  <div>@아브렐슈드</div>
+                  <CharName>끄구마</CharName>
+                  <div>
+                    <span>스카우터</span>
+                    <span>*</span>
+                    <span>1,630.83</span>
+                  </div>
+                </CharAbility>
+                <CharAbility>
+                  <div>@아브렐슈드</div>
+                  <CharName>끄구마</CharName>
+                  <div>
+                    <span>스카우터</span>
+                    <span>*</span>
+                    <span>1,630.83</span>
+                  </div>
+                </CharAbility>
+              </CharAbilitis>
             </FlexWrap>
-            <ResultArea>{tabData[activeTab]}</ResultArea>
-          </div>
-        </CharInfo>
-      </div>
-    </Container>
+
+            <div>
+              <FlexWrap>
+                {tabs.map((tab) => (
+                  <Tab
+                    key={tab}
+                    onClick={() => handleTabClick(tab)}
+                    isActive={tab === activeTab}
+                  >
+                    {tab}
+                  </Tab>
+                ))}
+              </FlexWrap>
+              <ResultArea>{tabData[activeTab]}</ResultArea>
+            </div>
+          </CharInfo>
+        </div>
+      </Container>
+    </>
   );
 }
 
@@ -184,14 +186,14 @@ const CharInfo = styled.div`
 `;
 
 const FlexWrap = styled.div`
-    display: flex;
-    position: relative;
+  display: flex;
+  position: relative;
 `;
 
 const CharCombat = styled.div`
-  position:absolute;
-  top:10;
-  right:32%;
+  position: absolute;
+  top: 10;
+  right: 32%;
   color: white;
   font-size: 28px;
   font-weight: bold;
@@ -202,10 +204,9 @@ const CharCombat = styled.div`
 `;
 
 const CharAbilitis = styled.div`
-
-  position:absolute;
-  bottom:0;
-  right:33%;
+  position: absolute;
+  bottom: 0;
+  right: 33%;
   color: white;
   font-size: 18px;
   font-weight: bold;
@@ -213,12 +214,11 @@ const CharAbilitis = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-
 `;
 
 const CharAbility = styled.div`
-    ${(props) => {
-    if(props.end) {
+  ${(props) => {
+    if (props.end) {
       return css`
         text-align: end;
       `;

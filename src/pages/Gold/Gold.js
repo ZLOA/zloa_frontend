@@ -46,66 +46,68 @@ export default function Gold() {
   return (
     <>
       <Nav />
-      <GoldContainer>
-        <CharImgWrapper>
-          <CharImg
-            url={
-              "https://cdn-lostark.game.onstove.com/uploadfiles/notice/6ea307f6d8414e7c9bb89c2dbe124578.png"
-            }
-          />
-          <BattlePowerText>
-            <div>실 전투력: 1500000</div>
-            <div style={{ fontSize: "35px", marginBottom: "5px" }}>⇩</div>
-            <div>목표 전투력: 20000000</div>
-          </BattlePowerText>
-          <CharInfoText>
-            <div>@아브렐슈드</div>
-            <div style={{ fontWeight: "bold" }}>끄구마</div>
-            <div>스카우터 Lv.1631.33</div>
-          </CharInfoText>
-        </CharImgWrapper>
+      <div style={{ paddingBottom: "30px" }}>
+        <GoldContainer>
+          <CharImgWrapper>
+            <CharImg
+              url={
+                "https://cdn-lostark.game.onstove.com/uploadfiles/notice/6ea307f6d8414e7c9bb89c2dbe124578.png"
+              }
+            />
+            <BattlePowerText>
+              <div>실 전투력: 1500000</div>
+              <div style={{ fontSize: "35px", marginBottom: "5px" }}>⇩</div>
+              <div>목표 전투력: 20000000</div>
+            </BattlePowerText>
+            <CharInfoText>
+              <div>@아브렐슈드</div>
+              <div style={{ fontWeight: "bold" }}>끄구마</div>
+              <div>스카우터 Lv.1631.33</div>
+            </CharInfoText>
+          </CharImgWrapper>
 
-        <div
-          style={{
-            borderTop: "2px solid #666",
-            borderBottom: "2px solid #666",
-          }}
-        >
-          <GridWrapper>
-            <BorderBox bottom={1} right={1}>
-              추천
-            </BorderBox>
-            <BorderBox bottom={1} right={1}>
-              예상 골드 소모량
-            </BorderBox>
-            <BorderBox bottom={1}>예상 전투력 상승치</BorderBox>
-          </GridWrapper>
-          {GoldData.map((d, i) => {
-            return (
-              <GridWrapper key={i}>
-                <BorderBox right={1}>{d.a}</BorderBox>
-                <BorderBox right={1}>{d.b}</BorderBox>
-                <BorderBox>{d.c}</BorderBox>
-              </GridWrapper>
-            );
-          })}
-        </div>
+          <div
+            style={{
+              borderTop: "2px solid #666",
+              borderBottom: "2px solid #666",
+            }}
+          >
+            <GridWrapper>
+              <BorderBox bottom={1} right={1}>
+                추천
+              </BorderBox>
+              <BorderBox bottom={1} right={1}>
+                예상 골드 소모량
+              </BorderBox>
+              <BorderBox bottom={1}>예상 전투력 상승치</BorderBox>
+            </GridWrapper>
+            {GoldData.map((d, i) => {
+              return (
+                <GridWrapper key={i}>
+                  <BorderBox right={1}>{d.a}</BorderBox>
+                  <BorderBox right={1}>{d.b}</BorderBox>
+                  <BorderBox>{d.c}</BorderBox>
+                </GridWrapper>
+              );
+            })}
+          </div>
 
-        <div>
-          <FlexWrap>
-            {tabs.map((tab) => (
-              <Tab
-                key={tab}
-                onClick={() => handleTabClick(tab)}
-                isActive={tab === activeTab}
-              >
-                {tab}
-              </Tab>
-            ))}
-          </FlexWrap>
-          <ResultArea>{tabData[activeTab]}</ResultArea>
-        </div>
-      </GoldContainer>
+          <div>
+            <FlexWrap>
+              {tabs.map((tab) => (
+                <Tab
+                  key={tab}
+                  onClick={() => handleTabClick(tab)}
+                  isActive={tab === activeTab}
+                >
+                  {tab}
+                </Tab>
+              ))}
+            </FlexWrap>
+            <ResultArea>{tabData[activeTab]}</ResultArea>
+          </div>
+        </GoldContainer>
+      </div>
     </>
   );
 }
@@ -115,7 +117,7 @@ const GoldContainer = styled.div`
   border: 2px solid #666;
   margin: auto;
   margin-top: 30px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   background-color: #1f1e1f;
   color: #c2bec2;
 `;

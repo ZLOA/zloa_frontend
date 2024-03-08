@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
-
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import Nav from "../../layout/Nav";
 
 const NoticeList = () => {
   const [noticeList, setNoticeList] = useState([]);
-  
+
   const [currentPage, setCurrentPage] = useState(1);
 
   const { noticeId } = useParams();
-
 
   // 가짜 더미 데이터 일단 만들었3
   // 여기 자리에 데이터 넣으면 끝나3
@@ -17,16 +16,15 @@ const NoticeList = () => {
   useEffect(() => {
     const dummyData = Array.from({ length: 100 }, (_, index) => ({
       id: index + 1,
-      category: '공지',
+      category: "공지",
       title: `공지사항 제목 ${index + 1}`,
-      date: '2023-03-07',
+      date: "2023-03-07",
       views: Math.floor(Math.random() * 100),
-      replys: Math.floor(Math.random() * 100)
+      replys: Math.floor(Math.random() * 100),
     }));
 
     setNoticeList(dummyData);
   }, []);
-
 
   // 페이징 처리
   const movePageChange = (newPage) => {
@@ -40,7 +38,7 @@ const NoticeList = () => {
     }
   };
 
-   // 다음페이지 이동
+  // 다음페이지 이동
 
   const moveNextPage = () => {
     if (currentPage < 10) {
@@ -49,37 +47,47 @@ const NoticeList = () => {
   };
 
   const moveNoticeDetailClick = (noticeId) => {
-     console.log('Wait Next Time... plz')
-  }
-
+    console.log("Wait Next Time... plz");
+  };
 
   return (
-    <BoardContainer>
-      <Title>공지사항</Title>
-      {noticeList.slice((currentPage - 1) * 10, currentPage * 10).map((notice) => (
-        <NoticeItem key={notice.id} onClick={() => moveNoticeDetailClick(notice.id)}>
-          <div>
-            <Category>{notice.category}</Category>
-          </div>
-          <TitleText>{notice.title}</TitleText>
-          <Date>{notice.date}</Date>
-          <Views>👁️  {notice.views}</Views>
-          <Replys>🌱  {notice.replys}</Replys>
-        </NoticeItem>
-      ))}
-
-<PageNavigation>
-        <PageMoveButton onClick={movePrevPage}>이전 페이지</PageMoveButton>
-        <PageButtonContainer>
-          {[...Array(10).keys()].map((page) => (
-            <PageButton key={page + 1} onClick={() => movePageChange(page + 1)}>
-              {page + 1}
-            </PageButton>
+    <>
+      <Nav />
+      <BoardContainer>
+        <Title>공지사항</Title>
+        {noticeList
+          .slice((currentPage - 1) * 10, currentPage * 10)
+          .map((notice) => (
+            <NoticeItem
+              key={notice.id}
+              onClick={() => moveNoticeDetailClick(notice.id)}
+            >
+              <div>
+                <Category>{notice.category}</Category>
+              </div>
+              <TitleText>{notice.title}</TitleText>
+              <Date>{notice.date}</Date>
+              <Views>👁️ {notice.views}</Views>
+              <Replys>🌱 {notice.replys}</Replys>
+            </NoticeItem>
           ))}
-        </PageButtonContainer>
-        <PageMoveButton onClick={moveNextPage}>다음 페이지</PageMoveButton>
-      </PageNavigation>
-    </BoardContainer>
+
+        <PageNavigation>
+          <PageMoveButton onClick={movePrevPage}>이전 페이지</PageMoveButton>
+          <PageButtonContainer>
+            {[...Array(10).keys()].map((page) => (
+              <PageButton
+                key={page + 1}
+                onClick={() => movePageChange(page + 1)}
+              >
+                {page + 1}
+              </PageButton>
+            ))}
+          </PageButtonContainer>
+          <PageMoveButton onClick={moveNextPage}>다음 페이지</PageMoveButton>
+        </PageNavigation>
+      </BoardContainer>
+    </>
   );
 };
 
@@ -88,6 +96,8 @@ const BoardContainer = styled.div`
   color: white;
   padding: 20px;
   text-align: center;
+  width: 65vw;
+  margin:auto;
 `;
 
 const Title = styled.h4`
@@ -103,6 +113,7 @@ const NoticeItem = styled.div`
   padding: 15px;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr 1fr 1fr;
+  align-items: center;
 `;
 
 const Category = styled.div`
@@ -118,7 +129,6 @@ const TitleText = styled.div`
   font-size: 18px;
   color: #fff;
   text-align: left;
-  
 `;
 
 const Date = styled.div`
@@ -132,12 +142,11 @@ const Views = styled.div`
 `;
 
 const Replys = styled.div`
-    color: #bbb;
-    margin-top: 5px;
-    border-radius: 20px;
-    border: solid 1px #dce2f7;
+  color: #bbb;
+  margin-top: 5px;
+  border-radius: 20px;
+  border: solid 1px #dce2f7;
 `;
-
 
 // 페이징 처리
 
@@ -179,6 +188,5 @@ const PageMoveButton = styled.button`
     color: #1f1e1f;
   }
 `;
-
 
 export default NoticeList;

@@ -8,6 +8,9 @@ import CharHistory from "../pages/Character/CharHistory";
 import CharExpedition from "../pages/Character/CharExpedition";
 import CharGuild from "../pages/Character/CharGuild";
 import Gold from "../pages/Gold/Gold";
+import Comparison from "../pages/Comparison/Comparison";
+import CompResult from "../pages/Comparison/CompResult";
+import NoticeList from "../pages/Notice/NoticeList";
 
 export default function RootRouter() {
   return (
@@ -24,6 +27,9 @@ export default function RootRouter() {
             <Route path="guild" element={<CharGuild />} />
           </Route>
           <Route path="/gold" element={<Gold />} />
+          <Route path="/comparison" element={<Comparison />} />
+          <Route path="/comparison/result" element={<CompResult />} />
+          <Route path="/notice" element={<NoticeList/>} />
         </Routes>
       </BrowserRouter>
     </>

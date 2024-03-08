@@ -1,26 +1,56 @@
+import { useState } from "react";
 import styled from "styled-components";
-import Main from "../Main/Main.js";
+import { useNavigate } from "react-router-dom";
+import Nav from "../../layout/Nav.js";
 
 export default function Comparison() {
-  return (
-    <Container>
-      <SearchContainer>
-        <SearchBar placeholder="캐릭터명을 입력해주세요."></SearchBar>
-        <Separator>VS</Separator>
-        <SearchBar placeholder="캐릭터명을 입력해주세요."></SearchBar>
-        <SearchButton>검색</SearchButton>
-      </SearchContainer>
+  const [charData, setCharData] = useState("");
+  const [charCompData, setCharCompData] = useState("");
 
-      <div>
-        <span>드롭다운 추가 필요</span>
-      </div>
-    </Container>
+  const navigate = useNavigate();
+
+  const goToResult = () => {
+    navigate("/comparison/result", {
+      state: { char: charData, charComp: charCompData },
+    });
+  };
+
+  const handleOnChange = (data) => {
+    setCharData(data);
+  };
+
+  const handleOnCompChange = (data) => {
+    setCharCompData(data);
+  };
+
+  return (
+    <>
+      <Nav />
+      <Container>
+        <SearchContainer>
+          <SearchBar
+            placeholder="캐릭터명을 입력해주세요."
+            onChange={(e) => handleOnChange(e.target.value)}
+          ></SearchBar>
+          <Separator>VS</Separator>
+          <SearchBar
+            placeholder="캐릭터명을 입력해주세요."
+            onChange={(e) => handleOnCompChange(e.target.value)}
+          ></SearchBar>
+          <SearchButton onClick={goToResult}>검색</SearchButton>
+        </SearchContainer>
+
+        <div>
+          <span>드롭다운 추가 필요</span>
+        </div>
+      </Container>
+    </>
   );
 }
 
 //export 있으면 다른 파일에서도 임포트 가능
 const Container = styled.div`
-  height: 100vh;
+  height: 80vh;
   width: 98vw;
   margin: auto;
   text-align: center;
@@ -57,7 +87,7 @@ const Separator = styled.div`
 const SearchButton = styled.button`
   height: 5vh;
   width: 70px;
-  margin-left : 25px;
+  margin-left: 25px;
   font-size: 16px;
   background-color: #3f9957;
   color: white;
