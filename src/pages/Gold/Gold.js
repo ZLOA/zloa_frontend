@@ -118,8 +118,9 @@ const GoldContainer = styled.div`
   border: 2px solid #666;
   margin: auto;
   margin-top: 30px;
+  margin-bottom: 30px;
   background-color: #1f1e1f;
-  color: white;
+  color: #c2bec2;
 `;
 
 const CharImgWrapper = styled.div`
