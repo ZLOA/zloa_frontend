@@ -16,6 +16,14 @@ export default function Nav() {
     navigate("/gold");
   };
 
+  const goToComparison = () => {
+    navigate("/comparison");
+  };
+
+  const goToNotice = () => {
+    navigate("/notice");
+  };
+
   return (
     <NavContainer>
       <NavWrap>
@@ -29,9 +37,9 @@ export default function Nav() {
         </NavLeft>
         <NavCenter>
           <NavItemContainer>
-            <NavItem>공지사항</NavItem>
+            <NavItem onClick={goToNotice}>공지사항</NavItem>
             <NavItem onClick={goToCharacter}>캐릭터 정보</NavItem>
-            <NavItem>전투력 비교</NavItem>
+            <NavItem onClick={goToComparison}>전투력 비교</NavItem>
             <NavItem onClick={goToGold}>스펙업 골드 조회</NavItem>
             <NavItem>도구</NavItem>
           </NavItemContainer>
