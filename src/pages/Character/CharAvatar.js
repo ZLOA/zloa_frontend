@@ -110,7 +110,7 @@ export default function CharAvatar() {
         <RightWrapper>
           {AvatarDataRight.map((d, i) => {
             return( <>
-            {i==2 && <div style={{marginTop:'30px'}}/>}
+            {i===2 && <div style={{marginTop:'30px'}}/>}
             <CharAvatarItemRight key={i} data={d} /></>);
           })}
         </RightWrapper>

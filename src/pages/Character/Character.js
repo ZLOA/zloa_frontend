@@ -109,11 +109,12 @@ const CharContainer = styled.div`
 `;
 
 const CharAside = styled.div`
-  border: 1px solid black;
+  border: 2px solid #666;
   display: flex;
   flex-direction: column;
   gap: 20px;
   font-size: 20px;
+  min-height: 89vh;
 `;
 
 const CharAsideImgContainer = styled.div`
