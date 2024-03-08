@@ -7,6 +7,7 @@ import CharAvatar from "../pages/Character/CharAvatar";
 import CharHistory from "../pages/Character/CharHistory";
 import CharExpedition from "../pages/Character/CharExpedition";
 import CharGuild from "../pages/Character/CharGuild";
+import Gold from "../pages/Gold/Gold";
 
 export default function RootRouter() {
   return (
@@ -22,6 +23,7 @@ export default function RootRouter() {
             <Route path="expedition" element={<CharExpedition />} />
             <Route path="guild" element={<CharGuild />} />
           </Route>
+          <Route path="/gold" element={<Gold />} />
         </Routes>
       </BrowserRouter>
     </>

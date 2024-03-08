@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-
 export default function Nav() {
   const navigate = useNavigate();
 
@@ -13,18 +12,27 @@ export default function Nav() {
     navigate("/character/profile");
   };
 
+  const goToGold = () => {
+    navigate("/gold");
+  };
+
   return (
     <NavContainer>
       <NavWrap>
         <NavLeft>
-          <div style={{ marginLeft: "25px" , cursor: "pointer"}} onClick={goToMain}>ZLOA</div>
+          <div
+            style={{ marginLeft: "25px", cursor: "pointer" }}
+            onClick={goToMain}
+          >
+            ZLOA
+          </div>
         </NavLeft>
         <NavCenter>
           <NavItemContainer>
             <NavItem>공지사항</NavItem>
             <NavItem onClick={goToCharacter}>캐릭터 정보</NavItem>
             <NavItem>전투력 비교</NavItem>
-            <NavItem>스펙업 골드 조회</NavItem>
+            <NavItem onClick={goToGold}>스펙업 골드 조회</NavItem>
             <NavItem>도구</NavItem>
           </NavItemContainer>
           <NavSearchContainer>
@@ -32,7 +40,7 @@ export default function Nav() {
               <div style={{ fontSize: "18px", textAlign: "center" }}>🔍</div>
               <NavSearchBar type="text" placeholder="캐릭터명을 입력하세요" />
               <div />
-              </NavSearchWrapper>
+            </NavSearchWrapper>
           </NavSearchContainer>
         </NavCenter>
         <div></div>
@@ -103,7 +111,7 @@ const NavSearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 const NavSearchWrapper = styled.div`
   /* width: 90%; */
