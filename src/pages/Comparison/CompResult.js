@@ -19,7 +19,7 @@ const tabData = {
 };
 
 export default function CompResult() {
-  const { charName1, charName2 } = useParams();
+  const param = useParams();
 
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
@@ -29,7 +29,7 @@ export default function CompResult() {
 
   const location = useLocation();
   const receivedInPutData = location.state;
-  console.log(receivedInPutData);
+  console.log(receivedInPutData, param);
 
   return (
     <>
@@ -38,9 +38,9 @@ export default function CompResult() {
         <div>
           <div>
             <SearchContainer>
-              <SearchBar value={charName1} />
+              <SearchBar value={param.id} />
               <Separator>VS</Separator>
-              <SearchBar value={charName2} />
+              <SearchBar value={param.id2} />
               <SearchButton>검색</SearchButton>
             </SearchContainer>
           </div>

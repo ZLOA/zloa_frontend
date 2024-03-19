@@ -1,100 +1,133 @@
 import styled from "styled-components";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Nav from "../../layout/Nav";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+import CharAvatar from "./CharAvatar";
+import CharExpedition from "./CharExpedition";
+import CharGuild from "./CharGuild";
+import CharHistory from "./CharHistory";
+import CharProfile from "./CharProfile";
+import CharSkill from "./CharSkill";
 
 export default function Character() {
-  const navigate = useNavigate();
-  const goToProfile = (data) => {
-    navigate("/character/profile");
-  };
-  const goToSkill = (data) => {
-    navigate("/character/skill");
+  const [responseData, setResponseData] = useState(null);
+  const param = useParams();
+
+  const fetchProfileData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5812/zloaApi/character/characters/profile?characterName=${param.id}`
+      );
+
+      setResponseData(response.data);
+
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const goToAvatar = (data) => {
-    navigate("/character/avatar");
+  useEffect(() => {
+    fetchProfileData();
+    // eslint-disable-next-line
+  }, [param]);
+
+  useEffect(() => {
+    fetchProfileData();
+    // eslint-disable-next-line
+  }, []);
+
+  const tabs = ["능력치", "스킬", "아바타", "히스토리", "보유 캐릭터", "길드"];
+
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
   };
 
-  const goToHistory = (data) => {
-    navigate("/character/history");
+  const tabData = {
+    능력치: (
+      <CharProfile
+        equip={responseData?.ArmoryEquipment}
+        gem={responseData?.ArmoryGem}
+        stat={responseData?.Stats}
+        engraving={responseData?.ArmoryEngraving}
+        card={responseData?.ArmoryCard}
+      />
+    ),
+    스킬: <CharSkill />,
+    아바타: <CharAvatar />,
+    히스토리: <CharHistory />,
+    "보유 캐릭터": <CharExpedition data={responseData?.ArmoryEquipment} />,
+    길드: <CharGuild />,
   };
-
-  const goToExpedition = (data) => {
-    navigate("/character/expedition");
-  };
-
-  const goToGuild = (data) => {
-    navigate("/character/guild");
-  };
-
-  const trash = [
-    {
-      tag: "서버",
-      content: "아브렐슈드",
-    },
-    {
-      tag: "길드",
-      content: "6덕",
-    },
-    {
-      tag: "클래스",
-      content: "스카우터",
-    },
-    {
-      tag: "칭호",
-      content: "빛을 꺼트리는 자",
-    },
-    {
-      tag: "전투",
-      content: "60",
-    },
-    {
-      tag: "아이템",
-      content: "1630.00",
-    },
-    {
-      tag: "원정대",
-      content: "230",
-    },
-    {
-      tag: "PVP",
-      content: "20급",
-    },
-    {
-      tag: "영지",
-      content: "Lv.70 후엥후에엥",
-    },
-  ];
 
   return (
     <>
-      <Nav />
-      <CharContainer>
-        <CharAside>
-          <CharAsideImgContainer>
-            <CharAsideCharInfo>
-              {trash.map((d, i) => {
-                return (
-                  <CharAsideCharInfoWrapper key={i}>
-                    <CharAsideCharInfoTag>{d.tag}</CharAsideCharInfoTag>
-                    <div>{d.content}</div>
+      {responseData && (
+        <>
+          <Nav />
+          <CharContainer>
+            <CharAside>
+              <CharAsideImgContainer>
+                <CharAsideCharInfo>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>서버</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.ServerName}</div>
                   </CharAsideCharInfoWrapper>
-                );
-              })}
-            </CharAsideCharInfo>
-            <CharAsideImg />
-          </CharAsideImgContainer>
-          <div onClick={goToProfile}>능력치</div>
-          <div onClick={goToSkill}>스킬</div>
-          <div onClick={goToAvatar}>아바타</div>
-          <div onClick={goToHistory}>히스토리</div>
-          <div onClick={goToExpedition}>보유 캐릭터</div>
-          <div onClick={goToGuild}>길드</div>
-        </CharAside>
-        <CharContent>
-          <Outlet />
-        </CharContent>
-      </CharContainer>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>길드</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.GuildName ?? "-"}</div>
+                  </CharAsideCharInfoWrapper>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>클래스</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.CharacterClassName}</div>
+                  </CharAsideCharInfoWrapper>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>칭호</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.Title ?? "-"}</div>
+                  </CharAsideCharInfoWrapper>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>전투</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.CharacterLevel}</div>
+                  </CharAsideCharInfoWrapper>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>아이템</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.ItemMaxLevel}</div>
+                  </CharAsideCharInfoWrapper>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>원정대</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.ExpeditionLevel}</div>
+                  </CharAsideCharInfoWrapper>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>PVP</CharAsideCharInfoTag>
+                    <div>{responseData.ArmoryProfile.PvpGradeName}</div>
+                  </CharAsideCharInfoWrapper>
+                  <CharAsideCharInfoWrapper>
+                    <CharAsideCharInfoTag>영지</CharAsideCharInfoTag>
+                    <div>{`Lv.${responseData.ArmoryProfile.TownLevel} ${responseData.ArmoryProfile.TownName}`}</div>
+                  </CharAsideCharInfoWrapper>
+                </CharAsideCharInfo>
+                <CharAsideImg />
+              </CharAsideImgContainer>
+              <FlexWrap>
+                {tabs.map((tab) => (
+                  <Tab
+                    key={tab}
+                    onClick={() => handleTabClick(tab)}
+                    isActive={tab === activeTab}
+                  >
+                    <TabContent isActive={tab === activeTab}>{tab}</TabContent>
+                  </Tab>
+                ))}
+              </FlexWrap>
+            </CharAside>
+            <CharContent>{tabData[activeTab]}</CharContent>
+          </CharContainer>
+        </>
+      )}
     </>
   );
 }
@@ -137,7 +170,6 @@ const CharAsideCharInfoWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  color: white;
   font-size: 15px;
 `;
 
@@ -163,6 +195,23 @@ const CharAsideImg = styled.div`
 
 const CharContent = styled.div`
   /* border: 1px solid black; */
-  color: black;
   font-size: 100px;
+`;
+
+const FlexWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const Tab = styled.div`
+  display: flex;
+  cursor: pointer;
+  margin-left: 15px;
+`;
+
+const TabContent = styled.div`
+  padding-bottom: 5px;
+  border-bottom: ${(props) => (props.isActive ? "1px solid white" : "none")};
+  font-weight: ${(props) => (props.isActive ? "bold" : "default")};
 `;
