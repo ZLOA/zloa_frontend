@@ -10,7 +10,7 @@ export default function Comparison() {
   const navigate = useNavigate();
 
   const goToResult = () => {
-    navigate("/comparison/result", {
+    navigate(`/comparison/result/${charData}/${charCompData}`, {
       state: { char: charData, charComp: charCompData },
     });
   };

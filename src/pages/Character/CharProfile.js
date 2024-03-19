@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
 const EquipData = [
@@ -240,27 +241,66 @@ const CardData = [
   },
 ];
 
-export default function CharProfile() {
-  console.log(Array(6));
-  console.log(Array(6).fill(0));
+export default function CharProfile({ equip, gem, stat, engraving, card }) {
+
+  const [equipData, setEquipData] = useState([]);
+  const [accData, setAccData] = useState([]);
+
+  useEffect(() => {
+    if (equip) {
+      const newEquip = [...equip];
+      
+      const parseEData = newEquip.map((item)=>{
+        if(item.Tooltip){
+          const parsedTooltip = JSON.parse(item.Tooltip);
+          return { ...item, Tooltip: parsedTooltip }
+        }else{
+          return item;
+        }
+      })
+      
+      const eData = parseEData.filter(
+        (item) =>
+          item.Type === "투구" ||
+          item.Type === "상의" ||
+          item.Type === "하의" ||
+          item.Type === "장갑" ||
+          item.Type === "어깨" ||
+          item.Type === "무기"
+      );
+      const aData = parseEData?.filter(
+        (item) =>
+          item.Type === "목걸이" ||
+          item.Type === "귀걸이" ||
+          item.Type === "반지"
+      );
+
+      setEquipData(eData);
+      setAccData(aData);
+      console.log(eData);
+      console.log(aData);
+    }
+  }, [equip]);
   return (
     <>
       <EquipContainer>
         <EquipWrapper>
-          {EquipData.map((d, i) => {
+          {equipData?.map((d, i) => {
             return (
               <EquipItem key={i}>
                 <EquipImgWrapper>
-                  <EquipImg url={d.g} />
-                  <EquipImgText>{d.f}</EquipImgText>
+                  <EquipImg url={d.Icon} />
+                  <EquipImgText>91</EquipImgText>
                 </EquipImgWrapper>
                 <EquipText>
-                  <div>{d.a}</div>
-                  <div>{d.b}</div>
+                  <div>2단계</div>
+                  {/* 초월 o/x를 EquipText에 파라미터로 보내주고 1fr*3 or 1fr*2, 위 div에 {초월o?? }도 걸어주고*/}
+                  <div>{d.Name}</div>
                   <EquipText3>
-                    <EquipText3Left>{d.c}</EquipText3Left>
+                  <EquipText3Left>환각 Lv.3</EquipText3Left>
+                    {/* <EquipText3Left>{d.c}</EquipText3Left>
                     <EquipText3Right>{d.d}</EquipText3Right>
-                    <EquipText3Right>{d.e}</EquipText3Right>
+                    <EquipText3Right>{d.e}</EquipText3Right> */}
                   </EquipText3>
                 </EquipText>
               </EquipItem>
@@ -473,6 +513,7 @@ const EquipText3Left = styled.div`
   background-color: #e5e7eb;
   border-radius: 1px;
   padding: 4px 7px;
+  color: black;
 `;
 
 const EquipText3Right = styled.div`

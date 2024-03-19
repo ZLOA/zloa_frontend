@@ -18,7 +18,7 @@ export default function RootRouter() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/character" element={<Character />}>
+          <Route path="/character/:id" element={<Character />}>
             <Route path="profile" element={<CharProfile />} />
             <Route path="skill" element={<CharSkill />} />
             <Route path="avatar" element={<CharAvatar />} />
@@ -28,7 +28,7 @@ export default function RootRouter() {
           </Route>
           <Route path="/gold" element={<Gold />} />
           <Route path="/comparison" element={<Comparison />} />
-          <Route path="/comparison/result" element={<CompResult />} />
+          <Route path="/comparison/result/:id/:id2" element={<CompResult />} />
           <Route path="/notice" element={<NoticeList/>} />
         </Routes>
       </BrowserRouter>

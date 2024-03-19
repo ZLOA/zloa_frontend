@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Nav() {
+  const [searchData, setSearchData] = useState("");
+
+  const handleOnChangeSearchBar = (data) => {
+    setSearchData(data);
+  };
   const navigate = useNavigate();
 
   const goToMain = () => {
@@ -9,7 +15,7 @@ export default function Nav() {
   };
 
   const goToCharacter = () => {
-    navigate("/character/profile");
+    navigate("/character/끄구마");
   };
 
   const goToGold = () => {
@@ -22,6 +28,11 @@ export default function Nav() {
 
   const goToNotice = () => {
     navigate("/notice");
+  };
+
+  const goToCharacterSearch = () => {
+    navigate(`/character/${searchData}`);
+    setSearchData("");
   };
 
   return (
@@ -45,8 +56,8 @@ export default function Nav() {
           </NavItemContainer>
           <NavSearchContainer>
             <NavSearchWrapper>
-              <div style={{ fontSize: "18px", textAlign: "center" }}>🔍</div>
-              <NavSearchBar type="text" placeholder="캐릭터명을 입력하세요" />
+              <div style={{ fontSize: "18px", textAlign: "center" }} onClick={goToCharacterSearch}>🔍</div>
+              <NavSearchBar type="text" placeholder="캐릭터명을 입력하세요" value={searchData} onChange={(e) => handleOnChangeSearchBar(e.target.value)}/>
               <div />
             </NavSearchWrapper>
           </NavSearchContainer>
