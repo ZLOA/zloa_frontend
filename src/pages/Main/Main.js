@@ -1,14 +1,41 @@
+import axios from "axios";
 import styled from "styled-components";
 import Layout from "../../layout/Layout";
+import { useState } from "react";
 
 export default function Main() {
+  const [searchData, setSearchData] = useState("");
+  const [responseData, setResponseData] = useState("");
+
+  const handleOnChangeSearchBar = (e) => {
+    setSearchData(e.target.value);
+  };
+
+  const fetchData = async () => {
+    console.log(`http://localhost:5812/zloaApi/character/characters/siblings?characterName=${searchData}`);
+    try {
+      const response = await axios.get(
+        `http://localhost:5812/zloaApi/character/characters/siblings?characterName=${searchData}`
+      );
+  
+      setResponseData(response.data);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <Layout>
       <Container>
         <BigLogo>ZLOA</BigLogo>
         <SearchBarContainer>
-          <div style={{ fontSize: "30px", textAlign: "center" }}>🔍</div>
-          <SearchBar type="text" placeholder="캐릭터명을 입력하세요" />
+          <div style={{ fontSize: "30px", textAlign: "center" }} onClick={fetchData}>🔍</div>
+          <SearchBar
+            type="text"
+            placeholder="캐릭터명을 입력하세요"
+            onChange={handleOnChangeSearchBar}
+          />
           <div />
         </SearchBarContainer>
       </Container>
@@ -18,7 +45,7 @@ export default function Main() {
 
 const Container = styled.div`
   width: 98vw;
-  height: 2000px;
+  height: 80vh;
   margin: auto;
   text-align: center;
 `;
@@ -33,13 +60,11 @@ const SearchBarContainer = styled.div`
   margin-top: 5vh;
   width: 35vw;
   height: 6vh;
-  border-radius: 60000px;
+  border-radius: 3%;
   box-shadow: 2px 2px 5px 1px #888888;
   border: 1px solid #666;
   display: grid;
   grid-template-columns: 1fr 8fr 1fr;
-  /* justify-content: center; */
-  align-items: center;
 `;
 
 const SearchBar = styled.input`
